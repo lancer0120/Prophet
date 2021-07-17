@@ -28,7 +28,7 @@ def main():
         
         f = open(ofile,'w')
         StockData = r.text.partition('"1101"')
-        f.write(StockData[1]+StockData[2])
+        f.write(StockData[1]+StockData[2].replace('\r',''))
     
         f.close()
         time.sleep(10)
