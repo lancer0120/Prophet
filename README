@@ -24,12 +24,42 @@ Usage: python3.9.exe .\CollectData.py
 # data_repository\StockPrice
 #
 # Ex: StockCode , StockName    , amount       , times  , totalmoney   , open  , high  , low   , close 
-      "1101"    , "$StockName" , "12,188,101" ,"5,958" ,"627,236,112" ,"51.50","51.60","51.30","51.50", ...
+#     "1101"    , "$StockName" , "12,188,101" ,"5,958" ,"627,236,112" ,"51.50","51.60","51.30","51.50", ...
 
 Usage: python3.9.exe .\GetStockPrice.py
 ##============================================================================##
 
 
+##============================================================================##
+# 3. Gen One Day Summary
+# Input: data_repository\Database\
+# 
+# Output: data_repository\Database\*\Summary.csv
+# 
+
+Usage: python3.9.exe .\GenOneDaySummary.py
+##============================================================================##
+
+##============================================================================##
+# 4. Gen All Day Summary
+# Input: data_repository\Database\*\Summary.csv
+# 
+# Output: data_repository\Prophet\*\*.csv
+# 
+
+Usage: python3.9.exe .\GenAllDaySummary.py
+##============================================================================##
+
+##============================================================================##
+# 5. Prophet 
+# Input: data_repository\Prophet\*\*.csv
+# 
+# Output: 
+# 
+Usage: python3.9.exe .\Prophet.py
+##============================================================================##
 
 
 ## 
+
+# vim: syntax=tcl
