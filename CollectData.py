@@ -4,14 +4,14 @@ import re,os,datetime
 
 def main():
 
-    AllJobs = {'D1': 'https://concords.moneydj.com/z/zk/zk1/zkparse_420_1.djhtm',
-               'D3': 'https://concords.moneydj.com/z/zk/zk1/zkparse_420_3.djhtm',
-               'D5': 'https://concords.moneydj.com/z/zk/zk1/zkparse_420_5.djhtm',
+    AllJobs = {'D01': 'https://concords.moneydj.com/z/zk/zk1/zkparse_420_1.djhtm',
+               'D03': 'https://concords.moneydj.com/z/zk/zk1/zkparse_420_3.djhtm',
+               'D05': 'https://concords.moneydj.com/z/zk/zk1/zkparse_420_5.djhtm',
                'D10':'https://concords.moneydj.com/z/zk/zk1/zkparse_420_10.djhtm',
                'D20':'https://concords.moneydj.com/z/zk/zk1/zkparse_420_20.djhtm',
                'D30':'https://concords.moneydj.com/z/zk/zk1/zkparse_420_30.djhtm'}
 
-    res = requests.get(AllJobs['D1'])
+    res = requests.get(AllJobs['D01'])
     bs = BeautifulSoup(res.text,'html.parser')
 
     aRawWebDate = bs.find('div', {'class':'zkf0'} ).string.split(':')[1]
