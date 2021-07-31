@@ -3,59 +3,44 @@ import pandas as pd
 
 def main():
 
+    ## Merge database 
     aFolderPath = 'data_repository\\Database\\'
     
     AllSumRpts = glob.glob(aFolderPath + '*\\Summary.csv')
 
+    AllDFs = []
     for aRpt in AllSumRpts:
         print(aRpt)
+        aDF = pd.read_csv(aRpt)
+        AllDFs.append(aDF)
 
-    #for aRpt in AllSumRpts:
-    #    print(aRpt)
-    #    dfi = pd.read_csv(aRpt)
-    #    for aItem in dfi['Stock']:
-    #        print(aItem)
-    return
+    aDF = pd.concat(AllDFs, join='inner') 
 
-    for aFolder in AllFolders:
-        aRunDay = os.path.basename(aFolder)
-        AllCSVs = glob.glob(aFolder + '\\D*.csv')
-        oFileName = aFolder + '\Summary.csv'
+    oDF = aDF.reset_index(drop=True)
 
-        if os.path.isfile(oFileName) is True:
-            print('%s is existed, override it !!!' % oFileName)
+    oDF['FinalPrice'] = 'not-ready'
+    oDF['Ratio']      = 'not-ready'
+    oDF['Key']        = 'not-ready'
 
-        ofp = open(oFileName,'w')
-        AllSumDB        = {}
-        AllStockPrice   = {}
-        AllSumItems     = []
-        for aCSV in AllCSVs:
-            aKey = os.path.splitext(os.path.basename(aCSV))[0]
-            aSumDB = []
-            
-            ifp = open(aCSV,'r')
-            lines = ifp.readlines()
-            for line in lines:
-                aline = line.strip().split(',')
-                aSumDB.append(aline[0])
-                AllStockPrice[aline[0]] = aline[1]
-                AllSumItems.append(aline[0])
-            
-            AllSumDB[aKey] = aSumDB
-            ifp.close()
-        aTitle = 'Stock,RunDay,Price,' + ','.join(AllSumDB.keys())
-        ofp.write(aTitle + '\n')
-        AllSumSet = set(AllSumItems)
-        for aItem in AllSumSet:
-            ItemStr = aItem + ',' + aRunDay + ',' + AllStockPrice[aItem]
-            for aKey in AllSumDB.keys():
-                if aItem in AllSumDB[aKey]:
-                    ItemStr += ',O'
-                else:
-                    ItemStr += ',X'
-            ofp.write(ItemStr + '\n')
+    df = pd.read_csv('./20210723.csv',header = None,encoding = 'ISO-8859-1')
+    AllCodes =  list(df[0])
+    AllPrices = list(df[8])
+    AllStocks = dict(zip(AllCodes,AllPrices))
 
-        ofp.close()
+    for i in range(len(oDF['Stock'])):
+        aStock = str(oDF['Stock'][i])
+        if aStock not in AllStocks:
+            continue
+
+        oDF['FinalPrice'][i] = AllStocks[aStock]
+        oDF['Ratio'][i]      = (float(oDF['FinalPrice'][i].replace(',','')) - float(oDF['Price'][i])) / float(oDF['Price'][i])
+        oDF['Ratio'][i]      = '%.3f' % oDF['Ratio'][i]
+
+        aKey = oDF['D01'][i] + oDF['D03'][i] + oDF['D05'][i] + oDF['D10'][i] + oDF['D20'][i] + oDF['D30'][i] 
+        oDF['Key'][i]        = aKey
+
+    oDF = oDF[oDF['FinalPrice'] != 'not-ready']
+    oDF.to_csv('df.csv', index=False)
 
 if __name__ == '__main__':main()
 
