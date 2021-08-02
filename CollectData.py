@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from bs4 import BeautifulSoup
 import requests
 import re,os,datetime
@@ -25,12 +27,12 @@ def main():
         print('Web is not ready: WebDate(%s) != Today(%s), ' % (aWebDate,aCheckToday))
         return
 
-    aFolderPath = 'data_repository\\Database\\' + aToday
+    aFolderPath = 'data_repository/Database/' + aToday
     if os.path.isdir(aFolderPath) is True:
         print('Job is already done: %s' % aFolderPath)
         return
     
-    os.system('mkdir %s' % aFolderPath)
+    os.system('mkdir -p %s' % aFolderPath)
         
     aMatcher = re.compile('^[0-9]+')
 
@@ -58,7 +60,7 @@ def main():
                 aList.append(aString)
             ResArray.append(aList) 
 
-        aDumpFile = aFolderPath + '\\' + aKey +  '.csv'
+        aDumpFile = aFolderPath + '/' + aKey +  '.csv'
         f = open(aDumpFile,'w')
         for i in range(1,len(ResArray)):
             Items = ResArray[i]

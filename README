@@ -11,7 +11,7 @@
 # Ex: Stock , Close  , one-day-value , one-day-rate , n-day-rate
       4919  , 124.50 , 1.50          , 1.22%        , 55.04
       
-Usage: python3.9.exe .\CollectData.py
+Usage: .\CollectData.py
 ##============================================================================##
 
 ##============================================================================##
@@ -26,7 +26,7 @@ Usage: python3.9.exe .\CollectData.py
 # Ex: StockCode , StockName    , amount       , times  , totalmoney   , open  , high  , low   , close 
 #     "1101"    , "$StockName" , "12,188,101" ,"5,958" ,"627,236,112" ,"51.50","51.60","51.30","51.50", ...
 
-Usage: python3.9.exe .\GetStockPrice.py
+Usage: .\GetStockPrice.py
 ##============================================================================##
 
 
@@ -37,7 +37,7 @@ Usage: python3.9.exe .\GetStockPrice.py
 # Output: data_repository\Database\*\Summary.csv
 # 
 
-Usage: python3.9.exe .\GenOneDaySummary.py
+Usage: .\GenOneDaySummary.py
 ##============================================================================##
 
 ##============================================================================##
@@ -47,7 +47,7 @@ Usage: python3.9.exe .\GenOneDaySummary.py
 # Output: data_repository\Prophet\*\*.csv
 # 
 
-Usage: python3.9.exe .\GenAllDaySummary.py
+Usage: .\GenAllDaySummary.py
 ##============================================================================##
 
 ##============================================================================##
@@ -56,7 +56,7 @@ Usage: python3.9.exe .\GenAllDaySummary.py
 # 
 # Output: 
 # 
-Usage: python3.9.exe .\Prophet.py
+Usage: .\Prophet.py
 ##============================================================================##
 
 

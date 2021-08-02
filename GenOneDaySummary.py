@@ -1,15 +1,17 @@
+#!/usr/bin/python3
+
 import os,glob
 
 def main():
 
-    aFolderPath = 'data_repository\\Database\\'
+    aFolderPath = 'data_repository/Database/'
     
     AllFolders = glob.glob(aFolderPath + '*')
 
     for aFolder in AllFolders:
         aRunDay = os.path.basename(aFolder)
-        AllCSVs = glob.glob(aFolder + '\\D*.csv')
-        oFileName = aFolder + '\Summary.csv'
+        AllCSVs = glob.glob(aFolder + '/D*.csv')
+        oFileName = aFolder + '/Summary.csv'
 
         if os.path.isfile(oFileName) is True:
             print('%s is existed, override it !!!' % oFileName)

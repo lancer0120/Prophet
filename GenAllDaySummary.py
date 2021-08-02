@@ -1,12 +1,14 @@
+#!/usr/bin/python3
+
 import os,glob
 import pandas as pd
 
 def main():
 
     ## Merge database 
-    aFolderPath = 'data_repository\\Database\\'
+    aFolderPath = 'data_repository/Database/'
     
-    AllSumRpts = glob.glob(aFolderPath + '*\\Summary.csv')
+    AllSumRpts = glob.glob(aFolderPath + '*/Summary.csv')
 
     AllDFs = []
     for aRpt in AllSumRpts:
